@@ -25,7 +25,7 @@ you can open a terminal in VS Code,
 and run `mvn test` to run the test suite.
 You can also run tests in VS Code
 by opening a Java file containing tests
-and clicking the *Run Test* link shown with decalrations.
+and clicking the *Run Test* link shown with declarations.
 
 [© 2020](https://creativecommons.org/licenses/by-sa/2.0/)
 by Sebastian Fischer
