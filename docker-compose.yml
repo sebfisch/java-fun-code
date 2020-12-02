@@ -1,0 +1,27 @@
+version: "3"
+volumes:
+  home:
+services:
+  dev:
+    build:
+      context: "https://github.com/sebfisch/docker-java-dev.git#latest"
+      # Adjust the build args to reflect your local setup
+      args:
+        HOME: /home/me
+        USER: me
+        UID: 501
+        GROUP: me
+        GID: 501
+    hostname: java-dev
+    environment:
+      # Adjust to reflect your own timezone
+      - TZ=Europe/Berlin
+        # The following line disables class data sharing for the JVM
+        # which leads to a warning message on some architectures.
+        # - JAVA_OPTIONS=-Xshare:off
+    volumes:
+      - home:/home
+        # Adjust directories and user to reflect above changes to build args
+      - .:/home/me/java-fun-code
+    working_dir: /home/me/java-fun-code
+    user: me
