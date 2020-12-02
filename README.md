@@ -15,3 +15,6 @@ To use the predefined environment in VS Code
 click on the Remote Containers icon in the bottom-left corner, 
 select Clone Repository in Container Volume, 
 and provide the URL of this repository.
+
+[© 2020](https://creativecommons.org/licenses/by-sa/2.0/)
+by Sebastian Fischer
