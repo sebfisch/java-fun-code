@@ -17,12 +17,12 @@ public class ExplainCommands {
   private static final BufferedReader STDIN = //
       new BufferedReader(new InputStreamReader(System.in));
 
-  public static void main(String[] args) {
+  public static void main(final String[] args) {
     prompt("Enter a unix command to print explanations, press ^C to quit.");
     try (Stream<String> lines = STDIN.lines()) {
       lines.map(ExplainCommands::explain).forEach(ExplainCommands::prompt);
     } catch (UncheckedIOException e) {
-      System.out.println(e.getMessage());
+      System.err.println(e.getMessage());
     }
   }
 
