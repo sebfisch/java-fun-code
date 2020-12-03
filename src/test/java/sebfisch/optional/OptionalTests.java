@@ -84,7 +84,7 @@ public class OptionalTests {
   @Test
   void testThatFilterKeepsMatchingElement() {
     final Optional<String> word = Optional.of("Optionals");
-    final Optional<String> result = word.filter(w -> w.length() > 6);
+    final Optional<String> result = word.filter(wrd -> wrd.length() > 6);
     assertEquals(word, result);
   }
 
@@ -92,7 +92,7 @@ public class OptionalTests {
   void testThatFlatMapOnEmptyYieldsEmpty() {
     final Optional<String> empty = Optional.empty();
     final Optional<Integer> result = //
-        empty.flatMap(w -> w.chars().boxed().findFirst());
+        empty.flatMap(wrd -> wrd.chars().boxed().findFirst());
     assertTrue(result.isEmpty());
   }
 
@@ -101,7 +101,7 @@ public class OptionalTests {
     final String value = "";
     final Optional<String> word = Optional.of(value);
     final Optional<Integer> result = //
-        word.flatMap(w -> w.chars().boxed().findFirst());
+        word.flatMap(wrd -> wrd.chars().boxed().findFirst());
     assertTrue(result.isEmpty());
   }
 
@@ -110,7 +110,7 @@ public class OptionalTests {
     final String value = "Hello";
     final Optional<String> word = Optional.of(value);
     final Optional<Integer> result = //
-        word.flatMap(w -> w.chars().boxed().findFirst());
+        word.flatMap(wrd -> wrd.chars().boxed().findFirst());
     assertEquals(Character.codePointAt(value, 0), result.get());
   }
 }

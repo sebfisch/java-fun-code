@@ -30,21 +30,21 @@ public class StreamTests {
   @Test
   void testThatMapAppliesGivenFunctionToEachElement() {
     final Stream<String> words = Stream.of("Hello", "Streams");
-    final Stream<Integer> result = words.map(w -> w.length());
+    final Stream<Integer> result = words.map(word -> word.length());
     assertStreamEquals(Stream.of(5, 7), result);
   }
 
   @Test
   void testThatFilterRemovesNonMatchingElements() {
     final Stream<String> words = Stream.of("Hello", "Streams");
-    final Stream<String> result = words.filter(w -> w.length() > 6);
+    final Stream<String> result = words.filter(word -> word.length() > 6);
     assertStreamEquals(Stream.of("Streams"), result);
   }
 
   @Test
   void testThatFlatMapCombinesStreamResults() {
     final Stream<String> words = Stream.of("Hello", "Streams");
-    final Stream<Integer> result = words.flatMap(w -> w.chars().boxed());
+    final Stream<Integer> result = words.flatMap(word -> word.chars().boxed());
     assertEquals(12, result.count());
   }
 
@@ -52,7 +52,7 @@ public class StreamTests {
   void testThatFlatMapWithIdentityFunctionFlattensNestedStreams() {
     final Stream<Stream<Integer>> nested = //
         Stream.of(Stream.of(2), Stream.of(3, 4));
-    final Stream<Integer> flat = nested.flatMap(s -> s);
+    final Stream<Integer> flat = nested.flatMap(stream -> stream);
     assertStreamEquals(Stream.of(2, 3, 4), flat);
   }
 
@@ -87,7 +87,7 @@ public class StreamTests {
     final List<String> closingLog = new ArrayList<>();
     final Stream<String> words = Stream.of("Hello", "Streams");
     words.onClose(() -> closingLog.add("closed"));
-    Stream.of(words).flatMap(ws -> ws).count();
+    Stream.of(words).flatMap(stream -> stream).count();
     assertFalse(closingLog.isEmpty());
   }
 }
