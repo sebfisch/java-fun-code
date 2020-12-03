@@ -47,37 +47,23 @@ public class OptionalTests {
   }
 
   @Test
-  void testThatOrYieldsFirstIfPresent() {
-    final Optional<String> first = Optional.of("Hello");
-    final Optional<String> second = Optional.of("Optionals");
-    assertEquals(first, first.or(() -> second));
-  }
-
-  @Test
-  void testThatOrYieldsSecondIfFirstIsEmpty() {
-    final Optional<String> first = Optional.empty();
-    final Optional<String> second = Optional.of("Optionals");
-    assertEquals(second, first.or(() -> second));
-  }
-
-  @Test
   void testThatMapOnEmptyYieldsEmpty() {
     final Optional<String> empty = Optional.empty();
-    final Optional<Integer> result = empty.map(w -> w.length());
+    final Optional<Integer> result = empty.map(wrd -> wrd.length());
     assertTrue(result.isEmpty());
   }
 
   @Test
   void testThatMapAppliesGivenFunctionToPresentElement() {
     final Optional<String> word = Optional.of("Hello");
-    final Optional<Integer> result = word.map(w -> w.length());
+    final Optional<Integer> result = word.map(wrd -> wrd.length());
     assertEquals(Optional.of(5), result);
   }
 
   @Test
   void testThatFilterRemovesNonMatchingElement() {
     final Optional<String> word = Optional.of("Hello");
-    final Optional<String> result = word.filter(w -> w.length() > 6);
+    final Optional<String> result = word.filter(wrd -> wrd.length() > 6);
     assertTrue(result.isEmpty());
   }
 
