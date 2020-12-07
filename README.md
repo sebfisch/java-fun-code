@@ -2,7 +2,8 @@
 
 This repository contains source code underlying
 [Functional Patterns in Java](https://sebfisch.github.io/java-fun/).
-It was developed with Java Version 14.
+The minimum required Java Version is 11.
+The code has also been tested with Java 14.
 
 You can install 
 [Docker](https://docs.docker.com/get-docker/)
