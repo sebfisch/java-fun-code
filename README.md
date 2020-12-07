@@ -2,10 +2,12 @@
 
 This repository contains source code underlying
 [Functional Patterns in Java](https://sebfisch.github.io/java-fun/).
+
+You can use you own Java Development Environment to work with the code.
 The minimum required Java Version is 11.
 The code has also been tested with Java 14.
 
-You can install 
+Alternatively, you can install 
 [Docker](https://docs.docker.com/get-docker/)
 and 
 [VS Code](https://code.visualstudio.com/download)
@@ -27,6 +29,11 @@ and run `mvn test` to run the test suite.
 You can also run tests in VS Code
 by opening a Java file containing tests
 and clicking the *Run Test* link shown with declarations.
+
+As an alternative to VS Code, you can run a development environment 
+based on `tmux` and `vim` with the following terminal command.
+
+    docker-compose run --rm dev
 
 [© 2020](https://creativecommons.org/licenses/by-sa/2.0/)
 by Sebastian Fischer

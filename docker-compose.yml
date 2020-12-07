@@ -11,6 +11,7 @@ services:
         UID: 501
         GID: 501
     hostname: java-dev
+    command: tmux -u new -s java-fun-code
     environment:
       # Adjust to reflect your own timezone
       - TZ=Europe/Berlin
@@ -19,5 +20,6 @@ services:
         # - JAVA_OPTIONS=-Xshare:off
     volumes:
       - home:/home
+      - ~/.ssh:/home/me/.ssh/:ro
       - .:/home/me/java-fun-code
     working_dir: /home/me/java-fun-code
