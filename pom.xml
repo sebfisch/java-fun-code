@@ -9,7 +9,7 @@
   <url>https://sebfisch.github.io/java-fun/</url>
 
   <properties>
-    <maven.compiler.release>14</maven.compiler.release>
+    <maven.compiler.release>11</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
   </properties>
@@ -71,7 +71,7 @@
           <encoding>UTF-8</encoding>
           <linkXref>true</linkXref>
           <minimumTokens>50</minimumTokens>
-          <targetJdk>14</targetJdk>
+          <targetJdk>11</targetJdk>
         </configuration>
       </plugin>
       <plugin>

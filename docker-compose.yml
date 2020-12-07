@@ -7,10 +7,8 @@ services:
       context: "https://github.com/sebfisch/docker-java-dev.git#latest"
       # Adjust the build args to reflect your local setup
       args:
-        HOME: /home/me
-        USER: me
+        JAVA_VERSION: 11
         UID: 501
-        GROUP: me
         GID: 501
     hostname: java-dev
     environment:
@@ -21,7 +19,5 @@ services:
         # - JAVA_OPTIONS=-Xshare:off
     volumes:
       - home:/home
-        # Adjust directories and user to reflect above changes to build args
       - .:/home/me/java-fun-code
     working_dir: /home/me/java-fun-code
-    user: me
