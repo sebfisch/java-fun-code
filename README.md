@@ -3,17 +3,20 @@
 This repository contains source code underlying
 [Functional Patterns in Java](https://sebfisch.github.io/java-fun/).
 
-You can use you own Java Development Environment to work with the code.
+You can use your own Java Development Environment to work with the code.
 The minimum required Java Version is 11.
 The code has also been tested with Java 14 and 20.
+
+Alternatively, you can open this repository using [Gitpod](https://www.gitpod.io/pricing) 
+in a predefined web-based development environment without creating (or adjusting) your own.
+You will only be able to save your changes, if you fork this repository into your own account.
 
 Alternatively, you can install 
 [Docker](https://docs.docker.com/get-docker/)
 and 
 [VS Code](https://code.visualstudio.com/download)
 with the 
-[Remote Development Extension Pack](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack)
-to use a predefined development environment without creating (or adjusting) your own.
+[Remote Development Extension Pack](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack).
 To use the predefined environment in VS Code 
 download and unpack
 [this repository](https://github.com/sebfisch/java-fun-code/archive/main.zip)
