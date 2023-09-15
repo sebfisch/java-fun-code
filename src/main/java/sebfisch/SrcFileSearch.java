@@ -9,6 +9,15 @@ import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
 public class SrcFileSearch {
+
+  /*
+   * TODO 1.2 Avoid reopening files
+   * 
+   * The presented implementation opens some files twice.
+   * Modify the stream pipeline in such a way that no files are opened more than
+   * once and only matching lines are held in memory.
+   */
+
   public static void main(final String[] args) {
     final Path srcPath = Path.of("src");
     final String regExp = "public static[^=]*\\(";

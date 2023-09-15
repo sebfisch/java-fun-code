@@ -139,4 +139,23 @@ public class ParserTests {
     assertStreamEquals(Stream.of("abc"), digitsOrLetters.results("abc"));
     assertStreamEquals(Stream.empty(), digitsOrLetters.results("12abc"));
   }
+
+  /*
+   * TODO 3.1 Ambiguous parsers
+   * 
+   * Some parsers can consume their inputs in more than one way and as a
+   * consequence produce more than one result.
+   * A simple example would be a parser that is combined with itself using or.
+   * Another, more subtle, example would be a sequential parser whose parts can be
+   * combined in different ways to parse given input.
+   *
+   * Write at least two more tests for parsers documenting the behaviour of
+   * alternative and sequential parsers with more than one result.
+   * 
+   * TODO 3.2 Reasoning
+   * 
+   * Can you spot a connection between the or combinator for parsers and the
+   * corresponding logic operation on boolean values?
+   * Write another test to document such a connection.
+   */
 }

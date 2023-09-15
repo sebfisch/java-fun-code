@@ -90,4 +90,15 @@ public class StreamTests {
     Stream.of(words).flatMap(stream -> stream).count();
     assertFalse(closingLog.isEmpty());
   }
+
+  /*
+   * TODO 1.1 Reasoning
+   *
+   * Think about properties that can be used to manipulate or reason about
+   * expressions involving the presented combinators and write more tests to check
+   * these properties.
+   * Can you express some of the presented combinators using others in a way that
+   * would allow arbitrary applications of one combinator to be replaced by a
+   * corresponding application of another?
+   */
 }

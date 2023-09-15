@@ -63,6 +63,8 @@ public class ExplainCommands {
   }
 
   /*
+   * TODO 2.2 Refactor anti-patterns
+   * 
    * Refactor the definitions below to avoid common anti-patterns when programming
    * with optional values.
    * 

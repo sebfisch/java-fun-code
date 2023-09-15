@@ -99,4 +99,15 @@ public class OptionalTests {
         word.flatMap(wrd -> wrd.chars().boxed().findFirst());
     assertEquals(Character.codePointAt(value, 0), result.get());
   }
+
+  /*
+   * TODO 2.1 Reasoning
+   * 
+   * Think about properties that can be used to manipulate or reason about
+   * expressions involving the presented combinators and write more tests to check
+   * these properties.
+   * Can you express some of the presented combinators using others in a way that
+   * would allow arbitrary applications of one combinator to be replaced by a
+   * corresponding application of another?
+   */
 }

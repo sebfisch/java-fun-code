@@ -56,4 +56,30 @@ public class ExpParser {
         exp)));
     return parenthezised.or(CONST);
   }
+
+  /*
+   * TODO 3.3 Generalized operator parsing
+   * 
+   * Refactor the parser definitions to generalize the parsing of operator
+   * symbols.
+   * 
+   * First, add a method with the following signature to this class.
+   *
+   * private Parser<Character> opCharIn(String chars);
+   *
+   * This method should return a parser for characters that are contained in the
+   * given string. Modify the expr and term parsers to use opCharIn.
+   * Check that the tests for the expression parser still pass.
+   *
+   * Then change the calls to opCharIn to allow for more arithmetic operators, at
+   * least adding operator symbols for subtraction and division.
+   * Make sure to add new operator symbols in such a way that their usual
+   * precedence rules are respected.
+   * Add tests to verify that your extension is correct.
+   *
+   * Change the definition of opCharIn to allow an arbitrary number of whitespace
+   * characters before and after the operator symbol.
+   * Add tests to verify that expressions can be parsed with an arbitrary amount
+   * of whitespace before and after binary operator symbols.
+   */
 }
