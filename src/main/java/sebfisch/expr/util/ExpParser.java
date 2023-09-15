@@ -67,7 +67,7 @@ public class ExpParser {
   private Parser<Exp> expr() {
     final Parser<Exp> opExpr = //
         term().flatMap(fst -> //
-        Parser.forChar().filter(chr -> chr == '+').flatMap(chr -> //
+        opCharIn("+-").flatMap(chr -> //
         expr().map(snd -> //
         new Bin(chr, fst, snd))));
     return opExpr.or(term());
@@ -77,9 +77,17 @@ public class ExpParser {
   private Parser<Exp> term() {
     final Parser<Exp> opTerm = //
         factor().flatMap(fst -> //
-        Parser.forChar().filter(chr -> chr == '*').flatMap(chr -> //
+        opCharIn("*/").flatMap(chr -> //
         term().map(snd -> //
         new Bin(chr, fst, snd))));
     return opTerm.or(factor());
+  }
+
+  private Parser<Character> opCharIn(final String chars) {
+    return //
+    Parser.forString(Character::isWhitespace).flatMap(_wsBefore -> //
+    Parser.forChar().filter(chr -> chars.indexOf(chr) >= 0).flatMap(chr -> //
+    Parser.forString(Character::isWhitespace).map(_wsAfter -> //
+    chr)));
   }
 }

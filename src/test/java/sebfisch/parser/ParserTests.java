@@ -1,7 +1,11 @@
 package sebfisch.parser;
 
 import static org.junit.jupiter.api.Assertions.assertIterableEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
@@ -191,4 +195,47 @@ public class ParserTests {
     assertStreamEquals(alternative.results("#"), combined.results("#"));
     assertStreamEquals(alternative.results(""), combined.results(""));
   }
+
+  // Tests for combinators added in task 3.5
+
+  @Test
+  void testThatOptionalParserSucceedsForMissingInput() {
+    final Parser<Optional<Character>> parser = //
+        Parser.forChar().filter(Character::isLetter).optional();
+    assertStreamEquals(Stream.of(Optional.empty()), parser.results(""));
+  }
+
+  @Test
+  void testThatOptionalParserSucceedsForMatchingInput() {
+    final Parser<Optional<Character>> parser = //
+        Parser.forChar().filter(Character::isLetter).optional();
+    final char character = 'X';
+    assertStreamEquals(//
+        Stream.of(Optional.of(character)), //
+        parser.results(Character.toString(character)));
+  }
+
+  @Test
+  void testThatListParserYieldsMultipleResults() {
+    final Parser<List<Character>> parser = //
+        Parser.forChar().filter(Character::isLetter).list();
+    assertStreamEquals(//
+        Stream.of('h', 'e', 'l', 'l', 'o'), //
+        parser.results("hello").flatMap(List::stream));
+  }
+
+  @Test
+  void testThatListParserYieldsEmptyResultForMissingInput() {
+    final Parser<List<Character>> parser = //
+        Parser.forChar().filter(Character::isLetter).list();
+    assertTrue(parser.results("").findFirst().map(List::isEmpty).orElse(false));
+  }
+
+  @Test
+  void testThatListParserCrashesIfUnderlyingParserAcceptsEmptyInput() {
+    final Parser<List<Integer>> parser = Parser.of(42).list();
+    final Stream<List<Integer>> results = parser.results("").limit(1);
+    assertThrows(StackOverflowError.class, () -> results.count());
+  }
+
 }

@@ -1,6 +1,9 @@
 package sebfisch.parser;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
@@ -78,4 +81,17 @@ public interface Parser<A> {
    * intermediateResults directly.
    * Write tests documenting the behaviour of the new combinators.
    */
+
+  default Parser<Optional<A>> optional() {
+    return map(Optional::of).or(Parser.of(Optional.empty()));
+  }
+
+  default Parser<List<A>> list() {
+    return //
+    flatMap(result -> //
+    list().map(results -> { //
+      results.add(0, result);
+      return results;
+    })).or(Parser.of(new ArrayList<A>()));
+  }
 }
