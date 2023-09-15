@@ -158,4 +158,37 @@ public class ParserTests {
    * corresponding logic operation on boolean values?
    * Write another test to document such a connection.
    */
+
+  @Test
+  void testThatAlternativeAmbigousParserHasManyResults() {
+    final Parser<String> digits = Parser.forString(Character::isDigit);
+    final Parser<String> parser = digits.or(digits);
+
+    final String input = "123";
+    assertStreamEquals(Stream.of(input, input), parser.results(input));
+  }
+
+  @Test
+  void testThatSequentialAmbigousParserHasManyResults() {
+    final Parser<String> digits = Parser.forString(Character::isDigit);
+    final Parser<String> parser = //
+        digits.flatMap(fst -> digits.map(snd -> fst + "|" + snd));
+
+    final Stream<String> results = parser.results("123");
+    assertStreamEquals(Stream.of("123|", "12|3", "1|23", "|123"), results);
+  }
+
+  @Test
+  void testThatAlternativeFiltersCanBeCombined() {
+    final Parser<Character> parser = Parser.forChar();
+    final Parser<Character> alternative = //
+        parser.filter(Character::isDigit) //
+            .or(parser.filter(Character::isLetter));
+    final Parser<Character> combined = //
+        parser.filter(chr -> Character.isDigit(chr) || Character.isLetter(chr));
+    assertStreamEquals(alternative.results("1"), combined.results("1"));
+    assertStreamEquals(alternative.results("a"), combined.results("a"));
+    assertStreamEquals(alternative.results("#"), combined.results("#"));
+    assertStreamEquals(alternative.results(""), combined.results(""));
+  }
 }

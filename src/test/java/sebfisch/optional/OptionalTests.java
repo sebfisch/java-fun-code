@@ -110,4 +110,26 @@ public class OptionalTests {
    * would allow arbitrary applications of one combinator to be replaced by a
    * corresponding application of another?
    */
+
+  @Test
+  void testThatFlatMapWithIdentityFunctionFlattensNestedOptionals() {
+    final Optional<Optional<Integer>> nested = Optional.of(Optional.of(42));
+    final Optional<Integer> flat = nested.flatMap(s -> s);
+    assertEquals(Optional.of(42), flat);
+  }
+
+  @Test
+  void testThatMapIsSpecialCaseOfFlatMap() {
+    final Optional<String> word = Optional.of("Hello");
+    final Optional<Integer> result = word.flatMap(w -> Optional.of(w.length()));
+    assertEquals(word.map(String::length), result);
+  }
+
+  @Test
+  void testThatFilterIsSpecialCaseOfFlatMap() {
+    final Optional<String> words = Optional.of("Optionals");
+    final Optional<String> result = //
+        words.flatMap(w -> w.length() > 6 ? Optional.of(w) : Optional.empty());
+    assertEquals(words.filter(w -> w.length() > 6), result);
+  }
 }

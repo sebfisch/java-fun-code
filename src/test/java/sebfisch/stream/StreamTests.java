@@ -101,4 +101,19 @@ public class StreamTests {
    * would allow arbitrary applications of one combinator to be replaced by a
    * corresponding application of another?
    */
+
+  @Test
+  void testThatMapIsSpecialCaseOfFlatMap() {
+    final Stream<String> words = Stream.of("Hello", "Streams");
+    final Stream<Integer> result = words.flatMap(w -> Stream.of(w.length()));
+    assertStreamEquals(Stream.of(5, 7), result);
+  }
+
+  @Test
+  void testThatFilterIsSpecialCaseOfFlatMap() {
+    final Stream<String> words = Stream.of("Hello", "Streams");
+    final Stream<String> result = //
+        words.flatMap(w -> w.length() > 6 ? Stream.of(w) : Stream.empty());
+    assertStreamEquals(Stream.of("Streams"), result);
+  }
 }

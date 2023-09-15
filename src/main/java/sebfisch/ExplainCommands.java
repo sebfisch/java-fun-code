@@ -81,18 +81,9 @@ public class ExplainCommands {
    */
 
   private static String explain(final String input) {
-    final Optional<String> cmd = //
-        Optional.ofNullable(isValidCommand(input) ? input : null);
-    final Optional<String> explanation = explainCommand(cmd);
-    return explanation.orElse("invalid command");
-  }
-
-  private static Optional<String> explainCommand(final Optional<String> cmd) {
-    if (cmd.isEmpty()) {
-      return Optional.empty();
-    } else {
-      final Optional<String> explanation = loadExplanation(cmd.get());
-      return explanation;
-    }
+    return Optional.of(input) //
+        .filter(ExplainCommands::isValidCommand) //
+        .flatMap(ExplainCommands::loadExplanation) //
+        .orElse("invalid command");
   }
 }
