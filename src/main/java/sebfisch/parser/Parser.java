@@ -65,4 +65,17 @@ public interface Parser<A> {
     return flatMap(result -> //
     predicate.test(result) ? Parser.of(result) : Parser.failure());
   }
+
+  /*
+   * TODO 3.5 Add combinators
+   * 
+   * Add combinators with the following signatures to the Parser interface.
+   * 
+   * Parser<Optional<A>> optional()
+   * Parser<List<A>> list()
+   * 
+   * Define the combinators in terms of existing ones without using
+   * intermediateResults directly.
+   * Write tests documenting the behaviour of the new combinators.
+   */
 }
