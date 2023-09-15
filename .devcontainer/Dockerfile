@@ -1,4 +1,4 @@
-ARG JAVA_VERSION=20
+ARG JAVA_VERSION=17
 FROM eclipse-temurin:$JAVA_VERSION
 CMD zsh --login
 

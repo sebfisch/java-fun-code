@@ -8,7 +8,7 @@
       "settings": {
         "terminal.integrated.shell.linux": {}
       },
-      "extensions": ["vscjava.vscode-java-pack", "mhutchie.git-graph"]
+      "extensions": ["vscjava.vscode-java-pack", "mhutchie.git-graph", "redhat.fabric8-analytics"]
     }
   },
   "remoteUser": "me"

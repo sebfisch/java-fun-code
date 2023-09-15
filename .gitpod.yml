@@ -4,3 +4,4 @@ vscode:
   extensions:
     - mhutchie.git-graph
     - vscjava.vscode-java-pack
+    - redhat.fabric8-analytics
