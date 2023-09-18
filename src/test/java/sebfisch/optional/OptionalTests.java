@@ -132,4 +132,11 @@ public class OptionalTests {
         words.flatMap(w -> w.length() > 6 ? Optional.of(w) : Optional.empty());
     assertEquals(words.filter(w -> w.length() > 6), result);
   }
+
+  @Test
+  void testThatMapYieldsEmptyIfFunctionYieldsNull() {
+    final Optional<String> word = Optional.of("Hello");
+    final Optional<Object> result = word.map(w -> null);
+    assertTrue(result.isEmpty());
+  }
 }
