@@ -139,4 +139,13 @@ public class OptionalTests {
     final Optional<Object> result = word.map(w -> null);
     assertTrue(result.isEmpty());
   }
+
+  @Test
+  void testThatFlatMapCombinesMultipleOptionals() {
+    Optional<Boolean> result = //
+        Optional.of(3).flatMap(a -> //
+        Optional.of(4).flatMap(b -> //
+        Optional.of(5).map(c -> a * a + b * b == c * c)));
+    assertTrue(result.orElseThrow());
+  }
 }
