@@ -27,9 +27,14 @@ public class SrcFileSearch {
 
     Result(final Path fileName, final Predicate<String> matches) {
       this.fileName = Objects.requireNonNull(fileName);
-      this.matchingLines = readLines(fileName) //
-          .filter(matches) //
-          .collect(Collectors.toList());
+
+      try (Stream<String> lines = Files.lines(fileName)) {
+        this.matchingLines = lines //
+            .filter(matches) //
+            .collect(Collectors.toList());
+      } catch (IOException e) {
+        throw new UncheckedIOException(e);
+      }
     }
 
     Path getFileName() {
@@ -65,13 +70,5 @@ public class SrcFileSearch {
     return Files.walk(root) //
         .filter(Files::isReadable) //
         .filter(path -> path.toString().endsWith(".java"));
-  }
-
-  private static Stream<String> readLines(final Path file) {
-    try {
-      return Stream.of(Files.lines(file)).flatMap(s -> s);
-    } catch (IOException e) {
-      throw new UncheckedIOException(e);
-    }
   }
 }
