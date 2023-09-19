@@ -91,6 +91,22 @@ public class StreamTests {
     assertFalse(closingLog.isEmpty());
   }
 
+  @Test
+  void testThatFlatMapCombinesMultipleStreams() {
+    Stream<String> pyTriples = //
+        // a := 1 | 2 | 3 | 4 | 5
+        Stream.of(1, 2, 3, 4, 5).flatMap(a -> //
+        // b := 1 | 2 | 3 | 4 | 5
+        Stream.of(1, 2, 3, 4, 5).flatMap(b -> //
+        // c := 1 | 2 | 3 | 4 | 5
+        Stream.of(1, 2, 3, 4, 5).filter(c -> //
+        // guard
+        a < b && b < c && a * a + b * b == c * c).map(c -> //
+        // return
+        String.format("%s %s %s", a, b, c))));
+    assertStreamEquals(Stream.of("3 4 5"), pyTriples);
+  }
+
   /*
    * TODO 1.1 Reasoning
    *
